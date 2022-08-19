@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="./dist/styles.css" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.js" integrity="sha512-d6nObkPJgV791iTGuBoVC9Aa2iecqzJRE0Jiqvk85BhLHAPhWqkuBiQb1xz2jvuHNqHLYoN3ymPfpiB1o+Zgpw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  </head>
+  <body>
+    <nav
+      class="flex items-center justify-center flex-wrap bg-white px-6 py-4 border-b-2"
+    >
+      <div class="flex items-center flex-shrink-0 text-blue-400 mr-20">
+        <svg
+          class="fill-current h-8 w-8 mr-2"
+          width="54"
+          height="54"
+          viewBox="0 0 54 54"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M13.5 22.1c1.8-7.2 6.3-10.8 13.5-10.8 10.8 0 12.15 8.1 17.55 9.45 3.6.9 6.75-.45 9.45-4.05-1.8 7.2-6.3 10.8-13.5 10.8-10.8 0-12.15-8.1-17.55-9.45-3.6-.9-6.75.45-9.45 4.05zM0 38.3c1.8-7.2 6.3-10.8 13.5-10.8 10.8 0 12.15 8.1 17.55 9.45 3.6.9 6.75-.45 9.45-4.05-1.8 7.2-6.3 10.8-13.5 10.8-10.8 0-12.15-8.1-17.55-9.45-3.6-.9-6.75.45-9.45 4.05z"
+          />
+        </svg>
+      </div>
+      <div class="flex-grow flex items-center w-auto">
+        <div class="text-sm flex-grow relative">      
+        <div class="flex">
+            <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
+                <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-5 w-5"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            strokeWidth="{2}"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+            />
+          </svg>
+            </div>
+            <input
+            type="text"
+            class="p-2.5 bg-blue-50 w-2/5 pl-10 focus:border-x-0  focus:outline-none"
+            placeholder="Search for transactions,items, etc"
+          />
+          <button class="inline-flex p-2.5 px-4  text-white bg-blue-500 hover:bg-blue-800 font-bold">Search</button>
+        </div>
+        </div>
+        <div class="flex mx-10">
+            <button class="relative p-2 text-gray-400 hover:bg-gray-100 hover:text-gray-600 focus:bg-gray-100 focus:text-gray-600 rounded-full">
+                <span class="absolute top-0 right-0 h-2 w-2 mt-1 mr-2 bg-red-500 rounded-full"></span>
+                <span class="absolute top-0 right-0 h-2 w-2 mt-1 mr-2 bg-red-500 rounded-full animate-ping"></span>
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mx-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+              </svg>
+              </button>
+              <button class="relative p-2 text-gray-400 hover:bg-gray-100 hover:text-gray-600 focus:bg-gray-100 focus:text-gray-600 rounded-full">
+                <span class="absolute top-0 right-0 h-2 w-2 mt-1 mr-2 bg-red-500 rounded-full"></span>
+                <span class="absolute top-0 right-0 h-2 w-2 mt-1 mr-2 bg-red-500 rounded-full animate-ping"></span>
+                <svg aria-hidden="true" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="h-6 w-6">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
+                  </svg>
+              </button>
+              <span class="h-10 w-10 ml-2 sm:ml-3 mr-2 bg-gray-100 rounded-full overflow-hidden">
+                <img src="https://avatars.githubusercontent.com/u/71245062?s=40&v=4" alt="user profile photo" class="h-full w-full object-cover">
+              </span>
+              <div class="flex justify-center items-center">
+                <svg aria-hidden="true" viewBox="0 0 20 20" fill="currentColor" class="hidden sm:block h-6 w-6 text-gray-300">
+                    <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+                  </svg> 
+              </div>
+        </div>
+      </div>
+    </nav>
+   <div class="flex min-h-screen">
+    <aside class="flex flex-col w-24 bg-white items-center my-8">
+        <button class="relative p-2 my-6 text-gray-400 hover:bg-gray-100 hover:text-gray-600 focus:bg-gray-100 focus:text-gray-600">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-blue-500" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                <path stroke="none" d="M0 0h24v24H0z"></path>
+                <path d="M4 4h6v6h-6z"  fill="currentColor"></path>
+                <path d="M14 4h6v6h-6z"  fill="currentColor"></path>
+                <path d="M4 14h6v6h-6z"  fill="currentColor"></path>
+                <path d="M14 14h6v6h-6z"  fill="currentColor"></path>
+             </svg>
+        </button>
+        <button class="relative p-2 my-6 text-gray-400 hover:bg-gray-100 hover:text-gray-600 focus:bg-gray-100 focus:text-gray-600">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-400" viewBox="0 0 20 20" fill="currentColor">
+                <path d="M3 1a1 1 0 000 2h1.22l.305 1.222a.997.997 0 00.01.042l1.358 5.43-.893.892C3.74 11.846 4.632 14 6.414 14H15a1 1 0 000-2H6.414l1-1H14a1 1 0 00.894-.553l3-6A1 1 0 0017 3H6.28l-.31-1.243A1 1 0 005 1H3zM16 16.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0zM6.5 18a1.5 1.5 0 100-3 1.5 1.5 0 000 3z" />
+              </svg>
+        </button>
+        <button class="relative p-2 my-6 text-gray-400 hover:bg-gray-100 hover:text-gray-600 focus:bg-gray-100 focus:text-gray-600">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-400" viewBox="0 0 20 20" fill="currentColor">
+                <path d="M2 10a8 8 0 018-8v8h8a8 8 0 11-16 0z" />
+                <path d="M12 2.252A8.014 8.014 0 0117.748 8H12V2.252z" />
+              </svg>
+        </button>
+        <button class="relative p-2 my-6 text-gray-400 hover:bg-gray-100 hover:text-gray-600 focus:bg-gray-100 focus:text-gray-600">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-400" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd" d="M11.49 3.17c-.38-1.56-2.6-1.56-2.98 0a1.532 1.532 0 01-2.286.948c-1.372-.836-2.942.734-2.106 2.106.54.886.061 2.042-.947 2.287-1.561.379-1.561 2.6 0 2.978a1.532 1.532 0 01.947 2.287c-.836 1.372.734 2.942 2.106 2.106a1.532 1.532 0 012.287.947c.379 1.561 2.6 1.561 2.978 0a1.533 1.533 0 012.287-.947c1.372.836 2.942-.734 2.106-2.106a1.533 1.533 0 01.947-2.287c1.561-.379 1.561-2.6 0-2.978a1.532 1.532 0 01-.947-2.287c.836-1.372-.734-2.942-2.106-2.106a1.532 1.532 0 01-2.287-.947zM10 13a3 3 0 100-6 3 3 0 000 6z" clip-rule="evenodd" />
+              </svg>
+        </button>
+    </aside>
+    <main class="flex-grow bg-slate-100 p-6">
+        <h1 class="text-3xl font-sans font-semibold text-black items-start">Dashboard</h1>
+        <div class="flex mt-4 w-full justify-between">
+            <div class="p-4 flex flex-col bg-blue-500 w-72 h-auto">
+                <div class="flex justify-between">
+                    <button class="relative p-4  bg-blue-400 bg-opacity-40 hover:bg focus:bg-gray-100 focus:text-gray-600">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-white" viewBox="0 0 20 20" fill="currentColor">
+                            <path d="M10 12a2 2 0 100-4 2 2 0 000 4z" />
+                            <path fill-rule="evenodd" d="M.458 10C1.732 5.943 5.522 3 10 3s8.268 2.943 9.542 7c-1.274 4.057-5.064 7-9.542 7S1.732 14.057.458 10zM14 10a4 4 0 11-8 0 4 4 0 018 0z" clip-rule="evenodd" />
+                        </svg>
+                    </button>
+                    <div class="p-2 h-auto w-24 text-white">
+                        <canvas id="myChart" class="text-white"></canvas>
+                    </div>
+                </div>
+                <div>
+                    <h5 class="font-semibold text-white mt-2">
+                        Total Views
+                    </h5>
+                    <h2 class="font-sans text-white text-3xl pb-3"> 308,402</h2>
+                    <div class="mt-2 w-full py-1 border-t-2 border-white">
+                        <span class="text-white text-sm mt-2">
+                            Stats from 1 jan 2022
+                        </span>
+                    </div>
+                </div>           
+                    
+            </div>
+            <div class="p-4 flex flex-col bg-white w-72 h-auto text-black">
+                <div class="flex justify-between">
+                    <button class="relative p-4  bg-green-400 bg-opacity-40 hover:bg focus:bg-gray-100 focus:text-gray-600">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-green-700" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd" d="M10 2a4 4 0 00-4 4v1H5a1 1 0 00-.994.89l-1 9A1 1 0 004 18h12a1 1 0 00.994-1.11l-1-9A1 1 0 0015 7h-1V6a4 4 0 00-4-4zm2 5V6a2 2 0 10-4 0v1h4zm-6 3a1 1 0 112 0 1 1 0 01-2 0zm7-1a1 1 0 100 2 1 1 0 000-2z" clip-rule="evenodd" />
+                          </svg>
+                    </button>
+                    <div class="p-2 h-auto w-24 text-green-700">
+                        <canvas id="myChart1" class="text-white"></canvas>
+                    </div>
+                </div>
+                <div>
+                    <h5 class="font-semibold text-gray-500 mt-2">
+                        Total Products
+                    </h5>
+                    <h2 class="font-sans text-indigo-900 text-3xl pb-3"> 10,820</h2>
+                    <div class="mt-2 w-full py-1 border-t-2 border-gray-400">
+                        <span class="text-blue-500  text-sm mt-2 w-full inline-flex items-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 mr-2 text-blue-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4" />
+                              </svg>
+                            Add Products
+                        </span>
+                    </div>
+                </div>           
+                    
+            </div>
+            <div class="p-4 flex flex-col bg-white w-72 h-auto text-black">
+                <div class="flex justify-between">
+                    <button class="relative p-4  bg-blue-300 bg-opacity-40 hover:bg focus:bg-gray-100 focus:text-gray-600">
+                          <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-blue-500" viewBox="0 0 20 20" fill="currentColor">
+                            <path d="M13 6a3 3 0 11-6 0 3 3 0 016 0zM18 8a2 2 0 11-4 0 2 2 0 014 0zM14 15a4 4 0 00-8 0v3h8v-3zM6 8a2 2 0 11-4 0 2 2 0 014 0zM16 18v-3a5.972 5.972 0 00-.75-2.906A3.005 3.005 0 0119 15v3h-3zM4.75 12.094A5.973 5.973 0 004 15v3H1v-3a3 3 0 013.75-2.906z" />
+                          </svg>
+                    </button>
+                    <div class="p-2 h-auto w-24 text-green-700">
+                        <canvas id="myChart2" class="text-white"></canvas>
+                    </div>
+                </div>
+                <div>
+                    <h5 class="font-semibold text-gray-500 mt-2">
+                        Total Users
+                    </h5>
+                    <h2 class="font-sans text-indigo-900 text-3xl pb-3">8,425</h2>
+                    <div class="mt-2 w-full py-1 border-t-2 border-gray-400">
+                        <div class="mt-2 w-full border-t-2 border-white">
+                            <span class="text-gray-500 text-sm ">
+                                New users noted every week
+                            </span>
+                        </div>
+                    </div>
+                </div>           
+                    
+            </div>
+            <div class="p-4 flex flex-col bg-white w-72 h-auto text-black">
+                <div class="flex justify-between">
+                    <button class="relative p-4  bg-emerald-300 bg-opacity-40 hover:bg focus:bg-gray-100 focus:text-gray-600">
+                          <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-emerald-600" viewBox="0 0 20 20" fill="currentColor">
+                            <path d="M3 1a1 1 0 000 2h1.22l.305 1.222a.997.997 0 00.01.042l1.358 5.43-.893.892C3.74 11.846 4.632 14 6.414 14H15a1 1 0 000-2H6.414l1-1H14a1 1 0 00.894-.553l3-6A1 1 0 0017 3H6.28l-.31-1.243A1 1 0 005 1H3zM16 16.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0zM6.5 18a1.5 1.5 0 100-3 1.5 1.5 0 000 3z" />
+                          </svg>
+                    </button>
+                    <div class="p-2 h-auto w-24 text-green-700">
+                        <canvas id="myChart3" class="text-white"></canvas>
+                    </div>
+                </div>
+                <div>
+                    <h5 class="font-semibold text-gray-500 mt-2">
+                        Total Sales
+                    </h5>
+                    <h2 class="font-sans text-indigo-900 text-3xl pb-3">1,028,623</h2>
+                    <div class="mt-2 w-full py-1 border-t-2 border-gray-400">
+                        <div class="mt-2 w-full border-t-2 border-white">
+                            <span class="text-gray-500 text-sm ">
+                                stats from 1 Jan 2022
+                            </span>
+                        </div>
+                    </div>
+                </div>           
+                    
+            </div>
+        </div>
+<div class="overflow-x-auto relative bg-white rounded-md mt-8 p-8">
+    <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+        <thead class="text-sm text-gray-700 capitalize dark:bg-gray-700 dark:text-gray-400">
+            <tr>
+                <th scope="col" class="py-3 px-6 text-sm font-bold text-indigo-900">
+                    No
+                </th>
+                <th scope="col" class="py-3 px-6 text-sm font-bold text-indigo-900">
+                    Product Name
+                </th>
+                <th scope="col" class="py-3 px-6 text-sm font-bold text-indigo-900">
+                    Status
+                </th>
+                <th scope="col" class="py-3 px-6 text-sm font-bold text-indigo-900">
+                    Sold
+                </th>
+                <th scope="col" class="py-3 px-6 text-sm font-bold text-indigo-900">
+                    View
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr class="bg-blue-100 rounded-md border-collapse my-4">
+                <td class="py-4 px-6">
+                    1
+                </td>
+                <th scope="row" class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap ">
+                   
+                    Apple MacBook Pro 17"
+                </th>
+                
+                <td class="py-4 px-6">
+                    Laptop
+                </td>
+                <td class="py-4 px-6">
+                    $2999
+                </td>
+                <td class="py-4 px-6">
+                    34
+                </td>
+            </tr>
+            <tr class="bg-white rounded-md border-collapse my-4">
+                <td class="py-4 px-6">
+                    2
+                </td>
+                <th scope="row" class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                    Microsoft Surface Pro
+                </th>
+                
+                <td class="py-4 px-6">
+                    Laptop PC
+                </td>
+                <td class="py-4 px-6">
+                    $1999
+                </td>
+                <td class="py-4 px-6">
+                    14
+                </td>
+            </tr>
+            <tr class="bg-blue-100 rounded-md">
+                <td class="py-4 px-6">
+                    3
+                </td>
+                <th scope="row" class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                    Magic Mouse 2
+                </th>
+                
+                <td class="py-4 px-6">
+                    Accessories
+                </td>
+                <td class="py-4 px-6">
+                    $99
+                </td>
+                <td class="py-4 px-6">
+                    44
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+    </main>
+   </div>
+   <script>
+    
+
+new Chart("myChart", {
+  type: "line",
+  data: {
+  labels: ["1 May","2 May","3 May","4 May","5 May","6 May","7 May","8 May","9 May","10 May","11 May","12 May","13 May","14 May","15 May","16 May","17 May","18 May","19 May","20 May","21 May","22 May","23 May","24 May","25 May","26 May","27 May","28 May","29 May","30 May","31 May"],
+    datasets: [{
+            data: [21,20,24,20,60,90,90,90,85,70,75,70,30,30,30,50,72,18,17,15,17,18,30,31,30,30,35,25,35,35,40],
+            backgroundColor: ["rgba(55, 125, 255, 0)", "rgba(255, 255, 255, 0)"],
+            borderColor: "white",
+            borderWidth: 2,
+            pointRadius: 0,
+            pointHoverRadius: 0
+            }]
+    },
+  options: {
+    scales:{
+    x:{display:false},
+    y:{display:false}
+  },
+  responsive: true,
+  plugins: {
+      legend: {
+        display:false
+      },
+      title: {
+        display: false
+      },
+      tooltip: {
+        postfix: "k",
+        hasIndicator: true,
+        intersect: false
+    }
+    },
+  }
+});
+new Chart("myChart1", {
+  type: "line",
+  data: {
+  labels: ["1 May","2 May","3 May","4 May","5 May","6 May","7 May","8 May","9 May","10 May","11 May","12 May","13 May","14 May","15 May","16 May","17 May","18 May","19 May","20 May","21 May","22 May","23 May","24 May","25 May","26 May","27 May","28 May","29 May","30 May","31 May"],
+    datasets: [{
+            data: [21,20,24,20,18,17,15,17,18,30,31,30,30,35,25,35,35,40,60,90,90,90,85,70,75,70,30,30,30,50,72],
+            backgroundColor: ["rgba(55, 125, 255, 0)", "rgba(255, 255, 255, 0)"],
+            borderColor: "#15803d",
+            borderWidth: 2,
+            pointRadius: 0,
+            pointHoverRadius: 0
+            }]
+    },
+  options: {
+    scales:{
+    x:{display:false},
+    y:{display:false}
+  },
+  responsive: true,
+  plugins: {
+      legend: {
+        display:false
+      },
+      title: {
+        display: false
+      },
+      tooltip: {
+        postfix: "k",
+        hasIndicator: true,
+        intersect: false
+    }
+    },
+  }
+});
+new Chart("myChart2", {
+  type: "line",
+  data: {
+  labels: ["1 May","2 May","3 May","4 May","5 May","6 May","7 May","8 May","9 May","10 May","11 May","12 May","13 May","14 May","15 May","16 May","17 May","18 May","19 May","20 May","21 May","22 May","23 May","24 May","25 May","26 May","27 May","28 May","29 May","30 May","31 May"],
+    datasets: [{
+            data: [21,20,24,20,18,17,30,35,25,35,35,40,60,90,90,90,85,70,75,70,30,30,15,17,18,30,31,30,30,50,72],
+            backgroundColor: ["rgba(55, 125, 255, 0)", "rgba(255, 255, 255, 0)"],
+            borderColor: "#438ffe",
+            borderWidth: 2,
+            pointRadius: 0,
+            pointHoverRadius: 0
+            }]
+    },
+  options: {
+    scales:{
+    x:{display:false},
+    y:{display:false}
+  },
+  responsive: true,
+  plugins: {
+      legend: {
+        display:false
+      },
+      title: {
+        display: false
+      },
+      tooltip: {
+        postfix: "k",
+        hasIndicator: true,
+        intersect: false
+    }
+    },
+  }
+});
+new Chart("myChart3", {
+  type: "line",
+  data: {
+  labels: ["1 May","2 May","3 May","4 May","5 May","6 May","7 May","8 May","9 May","10 May","11 May","12 May","13 May","14 May","15 May","16 May","17 May","18 May","19 May","20 May","21 May","22 May","23 May","24 May","25 May","26 May","27 May","28 May","29 May","30 May","31 May"],
+    datasets: [{
+            data: [21,20,24,20,18,17,15,17,185,70,75,70,30,8,30,31,30,30,35,25,35,35,40,60,90,90,90,30,30,50,72],
+            backgroundColor: ["rgba(55, 125, 255, 0)", "rgba(255, 255, 255, 0)"],
+            borderColor: "#83bcbd",
+            borderWidth: 2,
+            pointRadius: 0,
+            pointHoverRadius: 0
+            }]
+    },
+  options: {
+    scales:{
+    x:{display:false},
+    y:{display:false}
+  },
+  responsive: true,
+  plugins: {
+      legend: {
+        display:false
+      },
+      title: {
+        display: false
+      },
+      tooltip: {
+        postfix: "k",
+        hasIndicator: true,
+        intersect: false
+    }
+    },
+  }
+});
+
+   </script>
+  </body>
+</html>

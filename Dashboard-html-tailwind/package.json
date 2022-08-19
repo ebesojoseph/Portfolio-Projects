@@ -1,0 +1,15 @@
+{
+  "name": "dashboard-html-tailwind",
+  "version": "1.0.0",
+  "description": "![desing specification](https://cdn.dribbble.com/users/4208985/screenshots/17313206/media/2c61f9139fbf5b00b73c05449b5ae2e2.png)",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "tailwindcss": "^3.1.8"
+  }
+}
